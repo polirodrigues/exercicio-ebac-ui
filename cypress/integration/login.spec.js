@@ -34,4 +34,14 @@ context('Funcionalidade Login', () => {
 
         cy.get('.woocommerce-error').should('contain', 'Erro: A senha fornecida para o e-mail aluno_ebac@teste.com está incorreta. Perdeu a senha?')
     })
+
+    it('Deve enviar e-mail para a redefinição da senha caso perdida', () => {
+        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/lost-password/')
+
+        cy.get('.woocommerce-form-row--first > label').type('aluno_ebac@teste.com')
+        cy.get('.woocommerce-Button').click()
+
+        cy.get('.woocommerce-message').should('contain' , 'O e-mail de redefinição de senha foi enviado.')
+
+    })
 })
